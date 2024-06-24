@@ -1,9 +1,9 @@
-const { createBot, createProvider, createFlow, addKeyword } = require('@bot-whatsapp/bot')
+const { createBot, createProvider, createFlow, addKeyword, EVENTS } = require('@bot-whatsapp/bot')
 
 const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
-
+const {chat} = require("./scripts/chatGPT")
 // const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(['📄 Aquí tenemos el flujo secundario'])
 
 // const flowDocs = addKeyword(['doc', 'documentacion', 'documentación']).addAnswer(
@@ -49,7 +49,26 @@ const MockAdapter = require('@bot-whatsapp/database/mock')
 // )
 
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo'])
+// const flowPrincipal = addKeyword(EVENTS.WELCOME)
+
     .addAnswer('🙌 Hola bienvenido a este *Chatbot*')
+    // .addAction(async (contx , contxFn)=>{
+    //     const prompt ="sos un chatboot que responde preguntas";
+    //     const text = contx.body; 
+    //     const conversations = [];
+    //     // Crear el contesto con Las conversaciones
+    //     const contextMessages = conversations.flatMap(conv => [
+    //         { roles: "user", content: conv.question },
+    //         { roles: "assistant", content: conv.answer }
+    //     ])
+    //     // Añadir pregubta actual al contexto 
+    //     contextMessages.push({ roles: "user", content: text });
+    //     //Obtener respuesta de chat GPT
+    //     const response = await chat(prompt, contextMessages);
+    //     //Enviar respuesa al usuario
+    //     await contxFn.flowDynamic(response)
+    // });
+
     // .addAnswer(
     //     [
     //         'te comparto los siguientes links de interes sobre el proyecto',
